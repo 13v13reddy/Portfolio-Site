@@ -20,10 +20,14 @@ jobs:
       - name: Build and deploy
         run: |
           echo "Runner ID: ${{ env.RUNNER_ID }}"
-          
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+
+      - name: Print Deployment URL
+       run: |
+        echo "🚀 Deployed to https://13v13reddy.github.io/Portfolio-Site/"
     
