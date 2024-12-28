@@ -12,9 +12,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      
+      - name: Set runner ID
+        id: runner
+        run: echo "RUNNER_ID=${{ runner.id }}" >> $GITHUB_ENV
 
+      - name: Build and deploy
+        run: |
+          echo "Runner ID: ${{ env.RUNNER_ID }}"
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+    
