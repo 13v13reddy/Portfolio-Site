@@ -113,6 +113,11 @@ header p {
   font-size: 1rem;
   margin: 0;
 }
+.header-icon {
+  width: 50px; /* Adjust the size */
+  height: 50px; /* Adjust the size */
+}
+
 
 header nav {
   display: flex;
@@ -149,14 +154,12 @@ header .nav-links li a:hover {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   header .container {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row; /* Keep the header content in a row */
+    align-items: center;
   }
 
   header nav {
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: auto;
   }
 
   header .nav-links {
