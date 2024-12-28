@@ -65,3 +65,9 @@ if (runnerId) {
 } else {
   runnerIdElement.textContent = ''; // Hide if runner ID is not available
 }
+
+// Get the current year
+const currentYear = new Date().getFullYear();
+
+// Insert the current year into the placeholder element
+document.getElementById('current-year').textContent = currentYear;
