@@ -85,7 +85,6 @@ a {
   z-index: 1000;
 }
 
-/*test Push*/
 /* Header */
 header {
   background: rgba(0, 0, 0, 0.8);
@@ -95,17 +94,29 @@ header {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
   font-size: 1.5rem;
   font-weight: 600;
+  margin: 0;
+}
+
+header p {
+  font-size: 1rem;
+  margin: 0;
 }
 
 header nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 header .nav-links {
@@ -133,6 +144,39 @@ header .nav-links li a:hover {
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  header .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
 
 /* Hero Section */
