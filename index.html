@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Veera Brahma Reddy Bobba | DevOps Engineer</title>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/x-icon" href="./assets/icons/logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +17,12 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <h1>Veera Brahma Reddy Bobba</h1>
+      <div class="header-left">
+        <a href="#" class="logo-link">
+          <img src="./assets/icons/logo.png" alt="Logo" class="header-icon"> <!-- Custom SVG logo -->
+        </a>
+      </div>
+      <!--<h1>Veera Brahma Reddy Bobba</h1>-->
       <!-- <p>DevOps Engineer</p> -->
       <nav>
         <button class="menu-toggle" aria-label="Toggle navigation">
@@ -33,7 +34,7 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <!--<li><a href="#contact">Contact</a></li>-->
         </ul>
       </nav>
     </div>
@@ -90,7 +91,7 @@
       <div class="experience-grid">
         <div class="experience">
           <h3>DevOps Engineer</h3>
-          <p><strong>SYSRS IT Services – Maryland, U.S</strong> | Sep 2022 – Oct 2024</p>
+          <p><strong>SYSRS IT Services – Maryland, U.S</strong> | Sep 2022 – Dec 2024</p>
           <ul>
             <li>Provisioned and managed AWS resources (EC2 instances, S3 storage, networking) using CloudFormation templates and Terraform.</li>
             <li>Implemented CI/CD pipelines via AWS CodePipeline for automated builds, testing, and deployment of Node.js applications.</li>
@@ -164,16 +165,6 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <h2>Contact</h2>
-      <form action="#" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
       <div class="social-links">
         <a href="https://github.com/13v13reddy" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://linkedin.com/in/13v13reddy" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -185,9 +176,8 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2023 Veera Brahma Reddy Bobba. All rights reserved.</p>
+      <p>&copy; <span id="current-year"></span> Veera Brahma Reddy Bobba. All rights reserved.</p>
       <p>This website is hosted using <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
-      <p id="runner-id"></p>
     </div>
   </footer>
 

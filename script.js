@@ -56,12 +56,8 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Display GitHub Actions runner ID
-const runnerId = "{{ RUNNER_ID }}"; // Replace with the actual runner ID from your build process
-const runnerIdElement = document.getElementById('runner-id');
+// Get the current year
+const currentYear = new Date().getFullYear();
 
-if (runnerId) {
-  runnerIdElement.textContent = `GitHub Actions Runner ID: ${runnerId}`;
-} else {
-  runnerIdElement.textContent = ''; // Hide if runner ID is not available
-}
+// Insert the current year into the placeholder element
+document.getElementById('current-year').textContent = currentYear;
