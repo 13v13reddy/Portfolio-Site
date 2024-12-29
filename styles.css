@@ -114,11 +114,26 @@ header p {
   margin: 0;
 }
 
+.header-left {
+  display: flex; /* Use flexbox to align logo and text horizontally */
+  align-items: center; /* Vertically center the items */
+}
 .header-icon {
   width: 60px; /* Adjust the size */
   height: 60px; /* Adjust the size */
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove underline */
+}
+
+.automation-text {
+  margin-left: 10px; /* Add some space between the logo and the text */
+  font-size: 20px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optional: Make the text bold */
+}
 
 header nav {
   display: flex;
