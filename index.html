@@ -1,688 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Veera Brahma Reddy Bobba | Cloud Engineer</title>
-  <meta name="description" content="Portfolio of Veera Brahma Reddy Bobba, a Cloud Engineer creating scalable and automated cloud solutions.">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Veera Brahma Reddy Bobba | Cloud Engineer">
-  <meta property="og:description" content="Portfolio of Veera Brahma Reddy Bobba, a Cloud Engineer creating scalable and automated cloud solutions.">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Veera Brahma Reddy Bobba | Cloud Engineer">
-  <meta property="twitter:description" content="Portfolio of Veera Brahma Reddy Bobba, a Cloud Engineer creating scalable and automated cloud solutions.">
-
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veera Brahma Reddy Bobba | Terminal Portfolio</title>
+  <meta name="description" content="Interactive terminal portfolio for Veera Brahma Reddy Bobba, Cloud Engineer." />
+  <meta name="author" content="Veera Brahma Reddy Bobba" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #F8F9FA;
-      --text-dark: #212529;
-      --text-light: #495057;
-      --accent: #087f5b;
-      --accent-light: #e6fcf5;
-      --border-color: #dee2e6;
-      --card-bg: #FFFFFF;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-      --font-sans: 'Plus Jakarta Sans', sans-serif;
-      --z-index-nav: 1000;
-      --z-index-hamburger: 1001;
-      --z-index-back-to-top: 1002;
+      --bg: #14161a;
+      --text: #c8ceda;
+      --text-dark: #8892a3;
+      --accent: #33ff99;
+      --prompt: #82aaff;
+      --error: #ff6b6b;
+      --font-mono: 'Fira Code', monospace;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
-      font-family: var(--font-sans);
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-mono);
       background-color: var(--bg);
-      color: var(--text-light);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      color: var(--text);
+      font-size: 1.05em;
+      line-height: 1.6;
     }
-    body.menu-open { overflow: hidden; -webkit-overflow-scrolling: touch; }
-    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-    section {
-      padding: 100px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      position: relative;
+
+    #terminal {
+      height: 100%;
+      width: 100%;
+      padding: 15px;
+      overflow-y: auto;
+      cursor: text;
     }
-    section.visible { opacity: 1; transform: translateY(0); }
-    h1, h2, h3, h4, h5, h6 { color: var(--text-dark); font-weight: 700; }
-    h2.section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
+    
+    .terminal-wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
-    h2.section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50%;
-      height: 4px;
-      background-color: var(--accent);
-      border-radius: 2px;
+
+    #output-container {
+      flex-grow: 1;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
-    .section-subtitle { font-size: 1.1rem; margin-bottom: 3.5rem; max-width: 600px; }
-    a {
+
+    .prompt-line {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .prompt-user {
+      color: var(--prompt);
+    }
+
+    .prompt-symbol {
+      color: var(--text);
+    }
+
+    .prompt-command {
       color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease-in-out;
-      border-radius: 2px;
     }
-    a.btn, .btn {
-      color: #fff !important;
+
+    .input-area {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
     }
-    a:hover, a:focus { filter: brightness(0.85); }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      background-color: var(--accent);
-      color: #fff;
-      border-radius: 8px;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 14px rgba(8, 127, 91, 0.25);
+
+    #command-input {
+      background: transparent;
       border: none;
-      cursor: pointer;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 1em;
+      caret-color: transparent;
     }
-    .btn:hover, .btn:focus {
-      transform: translateY(-3px);
-      background-color: var(--accent);
-      filter: brightness(1.1);
-      box-shadow: 0 7px 20px rgba(8, 127, 91, 0.3);
+
+    #command-input:focus {
+      outline: none;
     }
-    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .main-header { padding: 1.5rem 0; position: sticky; top: 0; z-index: var(--z-index-nav); }
-    .glass-effect {
-        background: rgba(248, 249, 250, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    
+    #command-input:disabled {
+        cursor: not-allowed;
     }
-    .main-header .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); z-index: var(--z-index-hamburger); }
-    .logo span { color: var(--accent); }
-    .nav-links { list-style: none; display: flex; align-items: center; gap: 2rem; }
-    .nav-links a { color: var(--text-dark); font-weight: 500; position: relative; }
-    .nav-links a::after {
-      content: '';
+
+    .visually-hidden {
       position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 50%;
-      transform: translateX(-50%);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2em;
       background-color: var(--accent);
-      transition: width 0.3s ease;
+      animation: blink 1s step-end infinite;
+      -webkit-animation: blink 1s step-end infinite;
+      vertical-align: bottom;
     }
-    .nav-links a:hover::after, .nav-links a.active::after, .nav-links a:focus-visible::after { width: 100%; }
-    
-    /* Mobile Navigation Styles */
-    .hamburger-menu {
-        display: none;
-        width: 30px;
-        height: 22px;
-        position: relative;
-        cursor: pointer;
-        z-index: var(--z-index-hamburger);
-        background: none;
-        border: none;
-        padding: 0;
-    }
-    .hamburger-menu span {
-        display: block; position: absolute; height: 3px;
-        width: 100%; background: var(--text-dark);
-        border-radius: 3px; left: 0;
-        transition: all 0.25s ease-in-out;
-    }
-    .hamburger-menu span:nth-child(1) { top: 0px; }
-    .hamburger-menu span:nth-child(2) { top: 9px; }
-    .hamburger-menu span:nth-child(3) { top: 18px; }
-    .hamburger-menu.active span:nth-child(1) { top: 9px; transform: rotate(45deg); }
-    .hamburger-menu.active span:nth-child(2) { opacity: 0; }
-    .hamburger-menu.active span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
-    .mobile-nav {
-        position: fixed; top: 0; right: -100%; width: 100%;
-        height: 100vh; z-index: var(--z-index-nav);
-        display: flex; flex-direction: column; justify-content: center;
-        align-items: center; transition: right 0.3s ease-in-out;
-    }
-    .mobile-nav.active { right: 0; }
-    .mobile-nav .nav-links { flex-direction: column; gap: 3rem; text-align: center; }
-    .mobile-nav .nav-links a { font-size: 1.5rem; }
-    .mobile-nav .btn { margin-top: 1rem; }
-    .close-menu-btn {
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-        font-size: 2rem;
-        color: var(--text-dark);
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-    #hero {
-      min-height: 90vh;
-      display: flex; align-items: center; text-align: center;
-      padding-top: 0; overflow: hidden; position: relative;
-    }
-    #hero-canvas {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; z-index: -1;
-    }
-    .hero-content { max-width: 800px; margin: 0 auto; z-index: 1; }
-    #hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
-    #hero .hero-subtitle { font-size: 1.25rem; color: var(--text-light); margin-bottom: 2rem; }
-    #hero .hero-subtitle span { color: var(--accent); font-weight: 700; }
-    .hero-cta { display: flex; justify-content: center; gap: 1rem; }
-    #about .container {
-      display: grid;
-      grid-template-columns: 2fr 1.5fr;
-      gap: 4rem; align-items: flex-start;
-    }
-    .skills-list {
-      list-style: none; display: flex; flex-wrap: wrap;
-      gap: 0.75rem; margin-top: 1.5rem;
-    }
-    .skills-list li {
-      background-color: var(--accent-light);
-      color: var(--accent);
-      padding: 0.5rem 1rem; border-radius: 6px;
-      font-weight: 500; font-size: 0.9rem;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      will-change: transform, opacity;
-    }
-    .skills-list.visible li { opacity: 1; transform: translateY(0); }
-    .experience-container { max-width: 800px; margin: 0 auto; }
-    .job {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px; padding: 2rem;
-      box-shadow: var(--shadow); transition: all 0.3s ease;
-    }
-    .job:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 8px 15px rgba(0,0,0,0.06); }
-    .job-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .job-title { font-size: 1.25rem; font-weight: 700; }
-    .job-title span { color: var(--accent); font-weight: 500; }
-    .job-date {
-      background-color: var(--accent-light); color: var(--accent);
-      padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;
-      font-weight: 500; white-space: nowrap;
-    }
-    .job-description ul { list-style-type: none; }
-    .job-description li {
-      position: relative; padding-left: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-    .job-description li::before {
-      content: '✓'; position: absolute; left: 0;
-      color: var(--accent); font-weight: 700;
-    }
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .cert-card {
-      background-color: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow);
-      text-align: center; transition: all 0.3s ease;
-    }
-    .cert-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.06); }
-    .cert-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-    .cert-title { font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .cert-issuer { font-size: 0.9rem; color: var(--text-light); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .project-card {
-      background-color: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 12px; box-shadow: var(--shadow); overflow: hidden;
-      display: flex; flex-direction: column; transition: all 0.3s ease;
-    }
-    .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.06); }
-    .project-content {
-      padding: 1.5rem; flex-grow: 1;
-      display: flex; flex-direction: column;
-    }
-    .project-header {
-        display: flex; justify-content: space-between; align-items: center;
-        margin-bottom: 1rem;
-    }
-    .project-header .folder-icon { font-size: 2.2rem; color: var(--accent); }
-    .project-header .links a { color: var(--text-light); font-size: 1.2rem; margin-left: 0.75rem; }
-    .project-header .links a:hover, .project-header .links a:focus { color: var(--accent); }
-    .project-title { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .project-description { flex-grow: 1; }
-    .project-tech-list {
-      list-style: none; display: flex; flex-wrap: wrap;
-      gap: 0.5rem; margin-top: 1rem; padding-top: 1rem;
-      border-top: 1px solid var(--border-color);
-    }
-    .project-tech-list li { color: var(--text-light); font-size: 0.85rem; font-weight: 500; }
-    #contact { text-align: center; }
-    #contact .container { max-width: 650px; }
-    footer {
-      text-align: center; padding: 2.5rem 0;
-      border-top: 1px solid var(--border-color); margin-top: 60px;
-    }
-    .social-links { margin-bottom: 1rem; }
-    .social-links a { color: var(--text-light); font-size: 1.5rem; margin: 0 0.75rem; }
-    .social-links a:hover, .social-links a:focus { color: var(--accent); }
-    #back-to-top {
-        position: fixed; bottom: 2rem; right: 2rem;
-        width: 50px; height: 50px; background-color: var(--accent);
-        color: white; border: none; border-radius: 50%;
-        font-size: 1.2rem; cursor: pointer;
-        box-shadow: 0 5px 15px rgba(8, 127, 91, 0.4);
-        opacity: 0; visibility: hidden;
-        transform: translateY(20px); transition: all 0.3s ease;
-        z-index: var(--z-index-back-to-top);
-        display: flex; align-items: center; justify-content: center;
-    }
-    #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    
-    @media (max-width: 768px) {
-      h2.section-title { font-size: 2rem; }
-      .desktop-nav { display: none; }
-      .hamburger-menu { display: block; }
-      #about .container { grid-template-columns: 1fr; gap: 2rem; }
-      section { padding: 80px 0; }
-      .hero-cta { flex-direction: column; align-items: center; }
-    }
-    @media (max-width: 480px) {
-      section { padding: 60px 0; }
-      h2.section-title { font-size: 1.8rem; }
-      .section-subtitle { font-size: 1rem; margin-bottom: 2.5rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
       }
-      section { opacity: 1; transform: none; transition: none; }
-      .skills-list li { opacity: 1; transform: none; transition: none; }
+    }
+
+    a {
+      color: var(--prompt);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:active {
+      filter: brightness(1.5);
+    }
+
+    .output-command {
+      color: var(--accent);
+    }
+
+    .output-error {
+      color: var(--error);
+    }
+
+    .output-list-item {
+      padding-left: 2em;
+      position: relative;
+    }
+
+    .output-list-item::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.25em 1em;
+    }
+    
+    .skills-category {
+      color: var(--accent);
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+      grid-column: 1 / -1; /* Span full width */
+    }
+
+    .welcome-banner {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.5rem 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.95em;
+      }
+      #terminal {
+        padding: 10px;
+      }
     }
   </style>
 </head>
-<body id="home">
-
-  <header class="main-header glass-effect">
-    <div class="container">
-      <a href="#home" class="logo">Veera<span>.</span></a>
-      <nav class="desktop-nav">
-        <ul class="nav-links">
-          <li><a href="#about" data-section="about">About</a></li>
-          <li><a href="#experience" data-section="experience">Experience</a></li>
-          <li><a href="#certifications" data-section="certifications">Certifications</a></li>
-          <li><a href="#projects" data-section="projects">Projects</a></li>
-          <li><a href="#contact" data-section="contact">Contact</a></li>
-          <li><a href="assets/Veera_Brahma_Reddy_Bobba_Resume.pdf" class="btn btn-small" download>Resume</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-
-  <div class="mobile-nav glass-effect" id="mobile-nav">
-    <button class="close-menu-btn" aria-label="Close menu">
-        <i class="fas fa-times"></i>
-    </button>
-    <ul class="nav-links">
-        <li><a href="#about" data-section="about">About</a></li>
-        <li><a href="#experience" data-section="experience">Experience</a></li>
-        <li><a href="#certifications" data-section="certifications">Certifications</a></li>
-        <li><a href="#projects" data-section="projects">Projects</a></li>
-        <li><a href="#contact" data-section="contact">Contact</a></li>
-        <li><a href="assets/Veera_Brahma_Reddy_Bobba_Resume.pdf" class="btn" download>Resume</a></li>
-    </ul>
+<body>
+  <div class="terminal-wrapper">
+    <main id="terminal" onclick="document.getElementById('command-input').focus();">
+      <div id="output-container" aria-live="polite" aria-atomic="false"></div>
+      <div class="prompt-line">
+        <label for="command-input" class="visually-hidden">Command Input</label>
+        <span class="prompt-user">veera@cloud</span><span class="prompt-symbol">:</span><span class="prompt-command">~</span><span class="prompt-symbol">$</span>
+        <div class="input-area">
+          <input
+            type="text"
+            id="command-input"
+            aria-label="Terminal command input"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            disabled
+          />
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </main>
   </div>
-
-  <main>
-    <section id="hero">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-      <div class="container">
-        <div class="hero-content">
-          <h1>Cultivating Resilient Cloud Infrastructure</h1>
-          <p class="hero-subtitle">
-            I'm Veera Brahma Reddy Bobba, a Cloud Engineer passionate about building scalable, secure, and automated systems on <span>AWS</span>.
-          </p>
-          <div class="hero-cta">
-            <a href="#contact" class="btn">Get In Touch</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="about-text">
-          <h2 class="section-title">About Me</h2>
-          <p class="section-subtitle">
-            Cloud Engineer specializing in AWS, automation, and DevOps practices.
-          </p>
-          <p>
-            I design, automate, and optimize cloud infrastructure to deliver scalable and secure solutions. My experience includes provisioning AWS resources with Terraform, building CI/CD pipelines, and scripting in Python and Bash to streamline operations. I’m passionate about leveraging Infrastructure as Code and modern DevOps tools to reduce manual effort, improve reliability, and accelerate software delivery. My approach combines technical expertise with a focus on maintainability and operational excellence.
-          </p>
-        </div>
-        <div class="about-skills">
-          <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Core Technologies</h3>
-          <ul class="skills-list">
-            <li>AWS</li>
-            <li>Terraform</li>
-            <li>Python (Boto3)</li>
-            <li>Docker</li>
-            <li>Kubernetes</li>
-            <li>Jenkins</li>
-            <li>Linux Administration</li>
-            <li>Shell Scripting</li>
-            <li>CI/CD</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <div class="experience-container">
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-subtitle">My hands-on experience in building and automating cloud solutions.</p>
-            <div class="job">
-                <div class="job-header">
-                    <h3 class="job-title">Cloud Engineer Intern at <span>SYSRS IT Services LLC</span></h3>
-                    <span class="job-date">June 2024 - Present</span>
-                </div>
-                <div class="job-description">
-                    <ul>
-                        <li>Automated provisioning of core AWS infrastructure (EC2, S3, VPC) using Terraform, reducing manual setup time by over 50%.</li>
-                        <li>Contributed to CI/CD pipelines using AWS CodePipeline and Jenkins, automating the build, test, and deployment process for web applications.</li>
-                        <li>Developed Python and Bash scripts to automate routine system maintenance and log analysis, saving an estimated 5 hours of manual work per week.</li>
-                        <li>Configured Amazon CloudWatch dashboards and alarms to proactively monitor application performance and infrastructure health.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="certifications">
-      <div class="container">
-        <h2 class="section-title">Credentials & Certifications</h2>
-        <p class="section-subtitle">Official qualifications that validate my expertise in cloud technologies and development.</p>
-        <div class="cert-grid">
-            <div class="cert-card">
-                <div class="cert-icon"><i class="fab fa-aws"></i></div>
-                <h3 class="cert-title">DevOps on AWS</h3>
-                <p class="cert-issuer">Amazon Web Services</p>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon"><i class="fab fa-python"></i></div>
-                <h3 class="cert-title">Introduction to Python</h3>
-                <p class="cert-issuer">IBM</p>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon"><i class="fas fa-chart-bar"></i></div>
-                <h3 class="cert-title">Data Visualization</h3>
-                <p class="cert-issuer">IBM</p>
-            </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title">Selected Projects</h2>
-        <p class="section-subtitle">A few things I've built to apply and showcase my skills.</p>
-        <div class="projects-grid">
-          
-          <div class="project-card">
-            <div class="project-content">
-              <div class="project-header">
-                <i class="far fa-folder-open folder-icon"></i>
-                <div class="links">
-                    <a href="https://github.com/13v13reddy/TimeSheetSystem" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                </div>
-              </div>
-              <h3 class="project-title">Time Sheet Management System</h3>
-              <p class="project-description">A practical Java-based application to streamline employee time tracking, demonstrating skills in object-oriented design and data management.</p>
-              <ul class="project-tech-list">
-                <li>Java</li><li>OOP</li><li>Data Management</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-content">
-                <div class="project-header">
-                    <i class="far fa-folder-open folder-icon"></i>
-                    <div class="links">
-                        <a href="https://github.com/13v13reddy/HabitTracker" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <h3 class="project-title">Habit Tracker</h3>
-                <p class="project-description">A web application to help users build and maintain positive habits, showcasing UI/UX implementation and mobile development concepts.</p>
-                <ul class="project-tech-list">
-                    <li>Web App</li><li>UI/UX</li>
-                </ul>
-            </div>
-          </div>
-          
-          <div class="project-card">
-            <div class="project-content">
-                <div class="project-header">
-                    <i class="far fa-folder-open folder-icon"></i>
-                    <div class="links">
-                        <a href="https://github.com/13v13reddy/tictactoe" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <h3 class="project-title">Tic Tac Toe Game</h3>
-                <p class="project-description">A classic Tic Tac Toe game developed in Java with a clean GUI. This project highlights fundamental programming logic and event handling.</p>
-                <ul class="project-tech-list">
-                    <li>Java</li><li>GUI</li><li>Game Logic</li>
-                </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="section-subtitle">I'm currently seeking new opportunities and am always open to discussing technology, projects, or potential collaborations. Feel free to reach out!</p>
-        <a href="mailto:bobba.brahmareddy@gmail.com" class="btn">Say Hello <i class="fa-regular fa-paper-plane" aria-hidden="true"></i></a>
-      </div>
-    </section>
-  </main>
-  
-  <footer>
-    <div class="container">
-      <div class="social-links">
-        <a href="https://github.com/13v13reddy" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/13v13reddy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:bobba.brahmareddy@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-      <p>&copy; 2025 Veera Brahma Reddy Bobba. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <button id="back-to-top" aria-label="Go to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Globals ---
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const hamburger = document.querySelector('.hamburger-menu');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const closeMenuBtn = document.querySelector('.close-menu-btn');
-        const mobileNavLinks = mobileNav.querySelectorAll('a');
+      const terminal = document.getElementById('terminal');
+      const outputContainer = document.getElementById('output-container');
+      const commandInput = document.getElementById('command-input');
+
+      let commandHistory = [];
+      let historyIndex = -1;
+      let isTyping = false;
+
+      const sanitizeHTML = (str) => {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+      };
+
+      const printOutput = (html, container = outputContainer) => {
+        const newOutput = document.createElement('div');
+        newOutput.innerHTML = html;
+        container.appendChild(newOutput);
+        terminal.scrollTop = terminal.scrollHeight;
+      };
+      
+      const typeEffect = (element, text, speed, callback) => {
+          isTyping = true;
+          commandInput.disabled = true;
+          let i = 0;
+          function type() {
+              if (i < text.length) {
+                  element.innerHTML += text.charAt(i);
+                  i++;
+                  setTimeout(type, speed);
+              } else {
+                  isTyping = false;
+                  commandInput.disabled = false;
+                  commandInput.focus();
+                  if (callback) callback();
+              }
+          }
+          type();
+      };
+
+      const printError = (msg) => {
+        printOutput(`<span class="output-error">Error: ${sanitizeHTML(msg)}</span>`);
+      };
+
+      const printListItem = (text) => {
+        printOutput(`<div class="output-list-item">${sanitizeHTML(text)}</div>`);
+      };
+
+      const printBanner = () => {
+        const welcomeContainer = document.createElement('div');
+        welcomeContainer.className = 'welcome-banner';
+        outputContainer.appendChild(welcomeContainer);
         
-        // --- General Fade-in Observer ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: prefersReducedMotion ? 1 : 0.1 });
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
-
-        // --- Staggered Skills List Animation ---
-        const skillsList = document.querySelector('.skills-list');
-        if (skillsList) {
-            new IntersectionObserver((entries, skillsObserver) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const list = entry.target;
-                        if (!prefersReducedMotion) {
-                            const items = list.querySelectorAll('li');
-                            items.forEach((item, index) => {
-                                item.style.transitionDelay = `${index * 100}ms`;
-                            });
-                        }
-                        list.classList.add('visible');
-                        skillsObserver.unobserve(list);
-                    }
-                });
-            }, { threshold: 0.5 }).observe(skillsList);
-        }
-        
-        // --- Mobile Menu Toggle ---
-        function closeMobileMenu() {
-            hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-
-        function toggleMenu() {
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', String(!isExpanded));
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        }
-
-        hamburger.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // We only close the menu if it's a section link, not a download link
-                if(link.getAttribute('href').startsWith('#')) {
-                    closeMobileMenu();
-                }
+        typeEffect(welcomeContainer, "Welcome to the interactive portfolio of Veera Brahma Reddy Bobba.", 20, () => {
+            const motdContainer = document.createElement('div');
+            outputContainer.appendChild(motdContainer);
+            const randomMotd = portfolioData.motd[Math.floor(Math.random() * portfolioData.motd.length)];
+            typeEffect(motdContainer, `MOTD: "${randomMotd}"`, 20, () => {
+                printOutput("Type 'help' to see a list of available commands.");
+                printOutput('');
             });
         });
+      };
 
-        // --- Back to Top Button ---
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            backToTopButton.classList.toggle('visible', window.scrollY > 300);
-        });
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-        });
-        
-        // --- Active Navigation (ScrollSpy) ---
-        const sections = document.querySelectorAll('section[id]');
-        const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-links a');
-        function activateNavLink() {
-            let currentSection = '';
-            sections.forEach(section => {
-                if (window.scrollY >= section.offsetTop - 150) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            desktopNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.section === currentSection) link.classList.add('active');
-            });
+      const resizeInput = () => {
+        const buffer = 5;
+        ghost.textContent = commandInput.value;
+        commandInput.style.width = (ghost.offsetWidth + buffer) + 'px';
+      };
+
+      const ghost = document.createElement('span');
+      ghost.style.position = 'absolute';
+      ghost.style.visibility = 'hidden';
+      ghost.style.whiteSpace = 'pre';
+      ghost.style.font = getComputedStyle(commandInput).font;
+      document.body.appendChild(ghost);
+
+      commandInput.addEventListener('input', resizeInput);
+      resizeInput();
+
+      commandInput.addEventListener('keydown', (e) => {
+        if (isTyping) return;
+        if (e.key === 'Enter') {
+          const command = commandInput.value;
+          if (!command.trim()) return;
+          const promptHtml = `<div class="prompt-line"><span class="prompt-user">veera@cloud</span><span class="prompt-symbol">:</span><span class="prompt-command">~</span><span class="prompt-symbol">$</span><div class="input-area"><span class="output-command">${sanitizeHTML(command)}</span></div></div>`;
+          printOutput(promptHtml);
+          if (command.trim() !== 'clear-history') {
+              commandHistory.unshift(command);
+          }
+          historyIndex = -1;
+          executeCommand(command);
+          commandInput.value = '';
+          resizeInput();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            commandInput.value = commandHistory[historyIndex];
+            resizeInput();
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (historyIndex > 0) {
+            historyIndex--;
+            commandInput.value = commandHistory[historyIndex];
+            resizeInput();
+          } else {
+            historyIndex = -1;
+            commandInput.value = '';
+            resizeInput();
+          }
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          handleAutocomplete();
         }
-        activateNavLink();
-        window.addEventListener('scroll', activateNavLink);
+      });
 
-        // --- Hero Canvas Animation ---
-        const canvas = document.getElementById('hero-canvas');
-        if (canvas && !prefersReducedMotion) {
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let animationFrameId;
-            const resizeCanvas = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = document.getElementById('hero').offsetHeight;
-                initParticles();
-            };
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-                    this.vx = Math.random() * 0.4 - 0.2; this.vy = Math.random() * 0.4 - 0.2;
-                    this.radius = 2;
-                }
-                update() {
-                    this.x += this.vx; this.y += this.vy;
-                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-                }
-                draw() {
-                    ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(8, 127, 91, 0.5)'; ctx.fill();
-                }
+      const handleAutocomplete = () => {
+        const current = commandInput.value.trim();
+        const [cmd, arg] = current.split(' ');
+        if (!arg) {
+          const matches = Object.keys(commands).filter(c => c.startsWith(cmd));
+          if (matches.length === 1) {
+            commandInput.value = matches[0] + ' ';
+            resizeInput();
+          }
+        } else if (cmd === 'show' || cmd === 'open') {
+            const dataKeys = cmd === 'show' ? Object.keys(portfolioData) : portfolioData.projects.content.map(p => p.key);
+            const matches = dataKeys.filter(k => k.startsWith(arg));
+            if (matches.length === 1) {
+                commandInput.value = `${cmd} ${matches[0]}`;
+                resizeInput();
             }
-            const initParticles = () => {
-                particles = [];
-                let num = Math.floor((canvas.width * canvas.height) / 9000);
-                for (let i = 0; i < num; i++) particles.push(new Particle());
-            };
-            const connectParticles = () => {
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i; j < particles.length; j++) {
-                        const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                        if (dist < 120) {
-                            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = `rgba(8, 127, 91, ${1 - dist / 120})`;
-                            ctx.lineWidth = 0.5; ctx.stroke();
-                        }
-                    }
-                }
-            };
-            const animate = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => { p.update(); p.draw(); });
-                connectParticles();
-                animationFrameId = requestAnimationFrame(animate);
-            };
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(resizeCanvas, 200);
-            });
-            resizeCanvas(); animate();
         }
+      };
+
+      const portfolioData = {
+        about: {
+          description: 'Professional Summary',
+          content: [
+            'Motivated and detail-oriented Cloud Engineer with one year of internship experience focusing on cloud infrastructure management, automation, and CI/CD pipeline implementation.',
+            'Hands-on experience with AWS services (EC2, S3, IAM) and Infrastructure as Code (IaC) tools like Terraform and CloudFormation.',
+            'Familiar with containerization (Docker, Kubernetes) for efficient application deployment and scaling.',
+            'Proficient in Python and Bash for automating routine tasks.',
+            'Strong foundation in DevOps principles, including CI, monitoring (CloudWatch, Prometheus), and collaboration.',
+          ]
+        },
+        experience: {
+          description: 'Professional Experience',
+          content: [
+            {
+              title: 'Cloud Engineer Intern, SYSRS IT Services - Maryland, U.S',
+              date: 'June 2024 - Current',
+              duties: [
+                'Assisted in provisioning and managing AWS resources (EC2, S3, networking) using Terraform and CloudFormation.',
+                'Supported CI/CD pipelines via AWS CodePipeline for automated builds, testing, and deployment.',
+                'Gained hands-on experience with Docker and deployed applications to Kubernetes clusters.',
+                'Configured monitoring and logging using Amazon CloudWatch to track performance and troubleshoot issues.',
+                'Collaborated on security best practices by configuring IAM roles and using AWS Secrets Manager.',
+                'Automated routine tasks using Python and Bash scripts, reducing manual intervention.',
+              ]
+            }
+          ]
+        },
+        skills: {
+            description: 'Core Technologies',
+            content: {
+                'Languages': ['Python', 'Java', 'Node.js', 'Bash Scripting'],
+                'Cloud & IaC': ['AWS', 'Terraform', 'Ansible', 'CloudFormation'],
+                'Containers & Orchestration': ['Docker', 'Kubernetes', 'GitOps'],
+                'CI/CD Tools': ['Jenkins', 'GitHub Actions', 'Azure DevOps', 'AWS CodePipeline'],
+                'Monitoring': ['Prometheus', 'Grafana', 'ELK Stack', 'Amazon CloudWatch'],
+                'Source Control': ['Git', 'GitHub', 'GitLab', 'Bitbucket'],
+                'Databases': ['MySQL', 'PostgreSQL'],
+                'Operating Systems': ['Linux', 'Windows'],
+            }
+        },
+        education: {
+          description: 'Education',
+          content: [
+            'Rivier University - MS in Computer Science (Aug 2022 - May 2024)',
+            'Malla Reddy College of Engineering and Technology - B.Tech in Computer Science (Jun 2018 - April 2022)',
+          ]
+        },
+        projects: {
+          description: 'Selected Projects',
+          content: [
+            { key: 'timesheetsystem', name: 'TimeSheetSystem', desc: 'A Java-based application to streamline employee time tracking.', tech: 'Java, OOP', url: 'https://github.com/13v13reddy/TimeSheetSystem' },
+            { key: 'habittracker', name: 'HabitTracker', desc: 'A web application to help users build and maintain positive habits.', tech: 'Web App, UI/UX', url: 'https://github.com/13v13reddy/HabitTracker' },
+            { key: 'tictactoe', name: 'TicTacToe', desc: 'A classic Tic Tac Toe game developed in Java with a clean GUI.', tech: 'Java, GUI', url: 'https://github.com/13v13reddy/tictactoe' }
+          ]
+        },
+        contact: {
+          description: 'Contact Information',
+          content: [
+            `Email: <a href="mailto:bobba.brahmareddy@gmail.com">bobba.brahmareddy@gmail.com</a>`,
+            `LinkedIn: <a href="https://linkedin.com/in/13v13reddy" target="_blank" rel="noopener noreferrer">linkedin.com/in/13v13reddy</a>`,
+            `GitHub: <a href="https://github.com/13v13reddy" target="_blank" rel="noopener noreferrer">github.com/13v13reddy</a>`,
+            `Portfolio: <a href="https://13v13reddy.github.io/Terminal-Portfolio/" target="_blank" rel="noopener noreferrer">13v13reddy.github.io</a>`
+          ]
+        },
+        resume: { description: 'Download my resume', content: [`You can download my resume <a href="Veera_Brahma_Reddy_Bobba_Resume.pdf" download>here</a>.`] },
+        motd: [
+            "Talk is cheap. Show me the code. - Linus Torvalds",
+            "The best way to predict the future is to implement it. - David Heinemeier Hansson",
+            "Measuring programming progress by lines of code is like measuring aircraft building progress by weight. - Bill Gates",
+            "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler"
+        ]
+      };
+
+      const commands = {
+        help: () => {
+          printOutput('\nAvailable commands:');
+          const list = [
+            { cmd: 'help', desc: 'Show this help message.' },
+            { cmd: 'show <section>', desc: 'Display a section: about, experience, skills, etc.' },
+            { cmd: 'open <project>', desc: 'Open a project link. (e.g., open tictactoe)' },
+            { cmd: 'ls', desc: 'List all available sections to show.' },
+            { cmd: 'social', desc: 'Display social and contact links.' },
+            { cmd: 'whoami', desc: 'Display a short bio.' },
+            { cmd: 'date', desc: 'Display the current date.' },
+            { cmd: 'motd', desc: 'Display the message of the day.' },
+            { cmd: 'banner', desc: 'Display the welcome banner.' },
+            { cmd: 'clear', desc: 'Clear the terminal screen.' },
+            { cmd: 'clear-history', desc: 'Clear command history.' },
+            { cmd: 'sudo', desc: 'Request superuser privileges.' },
+          ];
+          let html = '<div class="help-grid">';
+          list.forEach(i => {
+            html += `<span class="output-command">${sanitizeHTML(i.cmd)}</span><span>- ${sanitizeHTML(i.desc)}</span>`;
+          });
+          html += '</div>';
+          printOutput(html);
+        },
+        show: ([section]) => {
+          if (!section) return printError(`Usage: show <section>. Use 'ls' to see available sections.`);
+          const data = portfolioData[section];
+          if (!data) return printError(`Section not found: ${section}. Use 'ls' to see available sections.`);
+          
+          printOutput(`\n<span class="output-command">--- ${sanitizeHTML(data.description)} ---</span>`);
+          
+          if (section === 'skills') {
+            let grid = '<div class="skills-grid">';
+            for (const category in data.content) {
+                grid += `<div class="skills-category">${sanitizeHTML(category)}</div>`;
+                data.content[category].forEach(skill => grid += `<span>- ${sanitizeHTML(skill)}</span>`);
+            }
+            grid += '</div>';
+            printOutput(grid);
+          } else if (section === 'experience') {
+            data.content.forEach(job => {
+              printOutput(`\n${sanitizeHTML(job.title)} (${sanitizeHTML(job.date)})`);
+              job.duties.forEach(printListItem);
+            });
+          } else if (section === 'projects') {
+            data.content.forEach(p => {
+              printOutput(`\n<a href="${p.url}" target="_blank" rel="noopener noreferrer">${sanitizeHTML(p.name)}</a> (${p.key})`);
+              printOutput(`  ${sanitizeHTML(p.desc)}`);
+              printOutput(`<span style="color: var(--text-dark)">  Tech: ${sanitizeHTML(p.tech)}</span>`);
+            });
+            printOutput(`\n<span style="color: var(--text-dark)">Hint: Use 'open <project_key>' to open in a new tab.</span>`);
+          } else if (section === 'contact' || section === 'resume') {
+            data.content.forEach(line => printOutput(`<div class="output-list-item">${line}</div>`));
+          } else {
+            data.content.forEach(printListItem);
+          }
+        },
+        open: ([projectKey]) => {
+            if (!projectKey) {
+                printError("Usage: open <project_key>. Available projects:");
+                portfolioData.projects.content.forEach(p => printListItem(`${p.key} - ${p.name}`));
+                return;
+            }
+            const project = portfolioData.projects.content.find(p => p.key === projectKey.toLowerCase());
+            if (project) {
+                printOutput(`Opening ${project.name} in a new tab...`);
+                window.open(project.url, '_blank');
+            } else {
+                printError(`Project '${projectKey}' not found. Use 'show projects' to see available projects.`);
+            }
+        },
+        social: () => {
+            printOutput(`\n<span class="output-command">--- Social & Contact Links ---</span>`);
+            portfolioData.contact.content.forEach(line => printOutput(`<div class="output-list-item">${line}</div>`));
+        },
+        date: () => printOutput(new Date().toLocaleString()),
+        motd: () => {
+            const randomMotd = portfolioData.motd[Math.floor(Math.random() * portfolioData.motd.length)];
+            printOutput(`"${randomMotd}"`);
+        },
+        sudo: () => printOutput(`<span class="output-error">[sudo] password for veera: User is not in the sudoers file. This incident will be reported.</span>`),
+        ls: () => {
+          printOutput('Available sections:');
+          Object.keys(portfolioData).filter(k => k !== 'motd').forEach(k => printListItem(`${k} - ${portfolioData[k].description}`));
+          printOutput(`<span style="color: var(--text-dark)">Hint: Use 'show &lt;section&gt;'</span>`);
+        },
+        whoami: () => printOutput('Veera Brahma Reddy Bobba - A Cloud Engineer passionate about building scalable, secure, and automated systems on AWS.'),
+        contact: () => commands.social(),
+        banner: () => {
+            outputContainer.innerHTML = '';
+            printBanner();
+        },
+        clear: () => {
+          outputContainer.innerHTML = '';
+          printBanner();
+        },
+        'clear-history': () => {
+          commandHistory = [];
+          historyIndex = -1;
+          printOutput('Command history cleared.');
+        }
+      };
+
+      const executeCommand = (command) => {
+        const [cmd, ...args] = command.trim().toLowerCase().split(/\s+/);
+        if (commands[cmd]) {
+            commands[cmd](args);
+        } else {
+            printError(`Command not found: ${cmd}. Type 'help' for a list of commands.`);
+        }
+      };
+
+      printBanner();
     });
   </script>
 </body>
