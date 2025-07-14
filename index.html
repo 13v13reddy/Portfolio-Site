@@ -442,16 +442,16 @@
           printOutput('\nAvailable commands:');
           const list = [
             { cmd: 'help', desc: 'Show this help message.' },
+            { cmd: 'whoami', desc: 'Display a short bio.' },
+            { cmd: 'ls', desc: 'List all available sections to show.' },
             { cmd: 'show <section>', desc: 'Display a section: about, experience, skills, etc.' },
             { cmd: 'open <project>', desc: 'Open a project link. (e.g., open tictactoe)' },
-            { cmd: 'ls', desc: 'List all available sections to show.' },
             { cmd: 'social', desc: 'Display social and contact links.' },
-            { cmd: 'whoami', desc: 'Display a short bio.' },
             { cmd: 'date', desc: 'Display the current date.' },
             { cmd: 'motd', desc: 'Display the message of the day.' },
             { cmd: 'banner', desc: 'Display the welcome banner.' },
             { cmd: 'clear', desc: 'Clear the terminal screen.' },
-            { cmd: 'clear-history', desc: 'Clear command history.' },
+            // { cmd: 'clear-history', desc: 'Clear command history.' },
             { cmd: 'sudo', desc: 'Request superuser privileges.' },
           ];
           let html = '<div class="help-grid">';
